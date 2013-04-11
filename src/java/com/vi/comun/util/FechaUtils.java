@@ -8,6 +8,7 @@ import java.util.Date;
  * @author jerviver21
  */
 public class FechaUtils {
+    private static final double MILLISECONDS_ANO = 365.25*24*60*60*1000;
     
     static SimpleDateFormat formato1 = new SimpleDateFormat("yyyy-MM-dd");
     static SimpleDateFormat formato2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -37,6 +38,16 @@ public class FechaUtils {
 
     public static Date getTime(String hora) throws ParseException{
         return formato3.parse(hora);
+    }
+    
+    public static int getEdad(Date fechaNacimiento){
+        int edad = 0;
+        if(fechaNacimiento == null){
+            return edad;
+        }
+        Date fechaActual = new Date();
+        edad = (int)((fechaActual.getTime()-fechaNacimiento.getTime())/MILLISECONDS_ANO);
+        return edad;
     }
     
 }
