@@ -48,7 +48,7 @@ public class ServiceLocator {
     private ServiceLocator() throws Exception{
         try {
             InitialContext contexto = new InitialContext();
-            commonFacade = (CommonServicesLocal)contexto.lookup("global/templatewebvi/CommonServices!com.vi.comun.services.CommonServicesLocal");
+            commonFacade = (CommonServicesLocal)contexto.lookup("global/MHSoftWebV1/CommonServices!com.vi.comun.services.CommonServicesLocal");
             cache = Collections.synchronizedMap(new HashMap());
         } catch (Exception e) {
             System.err.println(e);

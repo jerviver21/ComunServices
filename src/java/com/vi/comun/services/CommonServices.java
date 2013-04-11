@@ -1,7 +1,5 @@
 package com.vi.comun.services;
 
-
-
 import com.vi.comun.util.Log;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -94,6 +92,9 @@ public class CommonServices implements CommonServicesLocal {
     @Override
     public void updateEstructuraMenus() {
         try {
+            em.createNativeQuery("DELETE FROM resource ").executeUpdate();
+            em.createNativeQuery("DELETE FROM menu ").executeUpdate();
+            
             Map<String, BigInteger> roles = getReferenceTableForCombo("SELECT codigo, id FROM rol");
             Map<String, BigInteger> menus = getReferenceTableForCombo("SELECT nombre, id FROM menu");
             ResourceBundle recursos1 = ResourceBundle.getBundle("com.vi.comun.util.menu");
