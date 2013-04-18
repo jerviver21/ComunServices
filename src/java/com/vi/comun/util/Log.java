@@ -1,6 +1,6 @@
 package com.vi.comun.util;
 
-import com.vi.comun.locator.ServiceLocator;
+import com.vi.comun.locator.ParameterLocator;
 import java.io.File;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -33,7 +33,7 @@ public class Log {
                     log.removeHandler(fh);
                 }
                 SimpleFormatter formater = new SimpleFormatter();
-                String rutaLog = ServiceLocator.getInstance().getParameter("rutaLog");
+                String rutaLog = ParameterLocator.getInstance().getParameter("rutaLog");
                 File dirLog = new File(rutaLog);
                 if(!dirLog.exists()){
                     dirLog.mkdirs();

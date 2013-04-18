@@ -97,7 +97,9 @@ public class CommonServices implements CommonServicesLocal {
             
             Map<String, BigInteger> roles = getReferenceTableForCombo("SELECT codigo, id FROM rol");
             Map<String, BigInteger> menus = getReferenceTableForCombo("SELECT nombre, id FROM menu");
-            ResourceBundle recursos1 = ResourceBundle.getBundle("com.vi.comun.util.menu");
+            ResourceBundle appProperties = ResourceBundle.getBundle("com.vi.comun.util.application");
+            
+            ResourceBundle recursos1 = ResourceBundle.getBundle("com.vi.comun.util.menu_"+appProperties.getString("name"));
             Enumeration<String> eKeys = recursos1.getKeys();
             List<String> keys = Collections.list(eKeys);
             Collections.sort(keys);
