@@ -23,4 +23,5 @@ public interface CommonServicesLocal {
     public int executeUpdate(String query);
     public List<String> executeQuery(String query);
     public void updateEstructuraMenus();
+    public void insertAudSesion(String usr, String opr);
 }

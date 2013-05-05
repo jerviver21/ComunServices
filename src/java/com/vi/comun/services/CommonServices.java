@@ -164,6 +164,9 @@ public class CommonServices implements CommonServicesLocal {
         }
     }
 
-
+    @Override
+    public void insertAudSesion(String usr, String opr){
+        em.createNativeQuery("INSERT INTO aud_sesion (usr, operacion) VALUES ('"+usr+"','"+opr+"')").executeUpdate();
+    }
  
 }
