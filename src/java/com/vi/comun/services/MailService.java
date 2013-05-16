@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.Properties;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -35,7 +37,8 @@ public class MailService {
         locator = ParameterLocator.getInstance();
     }
 
-    public boolean enviarMail(final AudMail datosMail) throws MessagingException, Exception{
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean enviarMail(final AudMail datosMail) throws MessagingException{
         System.out.println("Init Sending mail...");
         
         Properties props = new Properties();

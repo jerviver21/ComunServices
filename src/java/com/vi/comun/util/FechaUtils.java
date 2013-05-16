@@ -2,6 +2,7 @@ package com.vi.comun.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -13,6 +14,20 @@ public class FechaUtils {
     static SimpleDateFormat formato1 = new SimpleDateFormat("yyyy-MM-dd");
     static SimpleDateFormat formato2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     static SimpleDateFormat formato3 = new SimpleDateFormat("HH:mm");
+    
+    public static int getAnoActual(){
+        return Calendar.getInstance().get(Calendar.YEAR);
+    }
+    
+    public static Date getFechaMasDias(Date fecha, int noDias){
+        Calendar calendario = Calendar.getInstance();
+        calendario.setTime(fecha);
+        while(noDias>0){
+            calendario.add(Calendar.DATE, 1);
+            noDias--;
+        }
+        return calendario.getTime();
+    }
     
     
     public static String getHora(Date date){
