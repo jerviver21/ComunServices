@@ -9,7 +9,10 @@ import java.util.Date;
  * @author jerviver21
  */
 public class FechaUtils {
-    private static final double MILLISECONDS_ANO = 365.25*24*60*60*1000;
+    public static final long MILLISECONDS_ANO = (long)(365.25*24*60*60*1000);
+    public static final long MILLISECONDS_DIA = 24*60*60*1000;
+
+    
     
     static SimpleDateFormat formato1 = new SimpleDateFormat("yyyy-MM-dd");
     static SimpleDateFormat formato2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -19,13 +22,10 @@ public class FechaUtils {
         return Calendar.getInstance().get(Calendar.YEAR);
     }
     
-    public static Date getFechaMasDias(Date fecha, int noDias){
+    public static Date getFechaMasPeriodo(Date fecha, int nro, int tipo){
         Calendar calendario = Calendar.getInstance();
         calendario.setTime(fecha);
-        while(noDias>0){
-            calendario.add(Calendar.DATE, 1);
-            noDias--;
-        }
+        calendario.add(tipo, nro);
         return calendario.getTime();
     }
     
