@@ -64,5 +64,14 @@ public class FechaUtils {
         edad = (int)((fechaActual.getTime()-fechaNacimiento.getTime())/MILLISECONDS_ANO);
         return edad;
     }
+
+    public static int getNroDiasPara(Date fechaFin) {
+        double millis = fechaFin.getTime() - new Date().getTime();
+        if(millis < 0){
+            return 0;
+        }
+        int nroDias = (int) (millis/MILLISECONDS_DIA);
+        return nroDias;
+    }
     
 }
