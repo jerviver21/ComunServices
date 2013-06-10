@@ -99,7 +99,7 @@ public class CommonServices implements CommonServicesLocal {
             Map<String, BigInteger> menus = getReferenceTableForCombo("SELECT nombre, id FROM menu");
             ResourceBundle appProperties = ResourceBundle.getBundle("com.vi.comun.util.application");
             
-            ResourceBundle recursos1 = ResourceBundle.getBundle("com.vi.comun.util.menu_"+appProperties.getString("name"));
+            ResourceBundle recursos1 = ResourceBundle.getBundle("com.vi.comun.util.menu_"+appProperties.getString("contexto"));
             Enumeration<String> eKeys = recursos1.getKeys();
             List<String> keys = Collections.list(eKeys);
             Collections.sort(keys);
@@ -111,6 +111,7 @@ public class CommonServices implements CommonServicesLocal {
             }
             
             for(String key:keys){
+                System.out.print(key+";");
                 if(key.matches("menus.*")){
                     String[] datos = recursos1.getString(key).split(";");
                     if(em.createNativeQuery("SELECT * FROM menu WHERE nombre = '"+datos[0]+"' AND idioma = '"+datos[2]+"'").getResultList().isEmpty()){
