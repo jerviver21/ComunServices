@@ -1,9 +1,11 @@
 package com.vi.comun.util;
 
+import com.vi.comun.locator.ParameterLocator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * @author jerviver21
@@ -72,6 +74,11 @@ public class FechaUtils {
         }
         int nroDias = (int) (millis/MILLISECONDS_DIA);
         return nroDias;
+    }
+    
+    public static boolean isFestivo(Date fecha){
+        Set<Date> festivos = ParameterLocator.getInstance().getFestivos();
+        return festivos.contains(fecha);
     }
     
 }

@@ -1,16 +1,20 @@
 package com.vi.comun.services;
 
+import com.vi.comun.dominio.Festivos;
 import com.vi.comun.util.Log;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -85,6 +89,16 @@ public class CommonServices implements CommonServicesLocal {
         }
         return datos;
     }
+    
+    public Set<Date> getFestivos(){
+        Set<Date> festivos = new HashSet<Date>();
+        List<Festivos> objs = em.createNamedQuery("Festivos.findAll").getResultList();
+        for(Festivos festivo: objs){
+            festivos.add(festivo.getFecha());
+        }
+        return festivos;
+    }
+    
 
     /*
      * Este método permite crear la estructura de menus en la base de datos en caso de que estos no existan.

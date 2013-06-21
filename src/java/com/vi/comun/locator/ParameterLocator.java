@@ -3,9 +3,11 @@ package com.vi.comun.locator;
 import com.vi.comun.services.CommonServicesLocal;
 import java.io.File;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javax.naming.InitialContext;
 
 /**
@@ -13,6 +15,7 @@ import javax.naming.InitialContext;
  */
 public class ParameterLocator {
     public static int PARAMETROS = 0;
+    public static int FESTIVOS = 1;
 
     //Guarda mapas con par llave-valor que se utilizan en la aplicación
     private Map cache;
@@ -64,6 +67,15 @@ public class ParameterLocator {
             System.out.println("Parametro: "+valorParametro);
         }
         return valorParametro;
+    }
+    
+    public Set<Date> getFestivos(){
+        Set<Date> festivos = (Set<Date>)cache.get(FESTIVOS);
+        if(festivos == null){
+            festivos = commonFacade.getFestivos();
+            cache.put(FESTIVOS, festivos);
+        }
+        return festivos;
     }
 
     

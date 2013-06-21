@@ -1,7 +1,9 @@
 package com.vi.comun.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.ejb.Local;
 
 /**
@@ -24,4 +26,5 @@ public interface CommonServicesLocal {
     public List<String> executeQuery(String query);
     public void updateEstructuraMenus();
     public void insertAudSesion(String usr, String opr);
+    public Set<Date> getFestivos();
 }
