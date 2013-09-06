@@ -20,6 +20,15 @@ public class FechaUtils {
     static SimpleDateFormat formato2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     static SimpleDateFormat formato3 = new SimpleDateFormat("HH:mm");
     
+    public static Date getFechaHoy(){
+        Calendar calendario = Calendar.getInstance();
+        calendario.set(Calendar.HOUR_OF_DAY, 0);
+        calendario.set(Calendar.MINUTE, 0);
+        calendario.set(Calendar.SECOND, 0);
+        calendario.set(Calendar.MILLISECOND, 0);
+        return calendario.getTime();
+    }
+    
     public static int getAnoActual(){
         return Calendar.getInstance().get(Calendar.YEAR);
     }

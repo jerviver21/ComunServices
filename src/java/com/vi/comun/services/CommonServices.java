@@ -51,7 +51,7 @@ public class CommonServices implements CommonServicesLocal {
     
     @Override
     public Map getReferenceTableForCombo(String consulta){
-        Map datos = new HashMap();
+        Map datos = new LinkedHashMap();
         try {
             List<Object[]> registros = em.createNativeQuery(consulta).getResultList();
             for(Object[] registro : registros){
@@ -68,7 +68,7 @@ public class CommonServices implements CommonServicesLocal {
     
     @Override
     public Map getReferenceTableForSubcombo(String consulta){
-        Map datos = new HashMap();
+        Map datos = new LinkedHashMap();
         try {
             List<Object[]> registros = em.createNativeQuery(consulta).getResultList();
             for(Object[] registro : registros){
