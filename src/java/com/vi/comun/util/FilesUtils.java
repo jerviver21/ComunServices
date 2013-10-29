@@ -1,5 +1,6 @@
 package com.vi.comun.util;
 
+import com.vi.comun.exceptions.ParametroException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -75,6 +76,7 @@ public class FilesUtils {
             out.write(c);
         }
         out.close(); 
+        System.out.println("archivo: "+archivo.getAbsolutePath()+" - "+archivo.length());
         return nombreArchivo;
     }
 
@@ -104,4 +106,5 @@ public class FilesUtils {
             file.delete();
         }
     }
+    
 }
