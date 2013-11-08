@@ -59,7 +59,7 @@ public class FilesUtils {
         return exito;
     }
     
-    public String crearArchivo(String ruta, String nombre, InputStream bytes)throws IOException{
+    public static String crearArchivo(String ruta, String nombre, InputStream bytes)throws IOException{
         File dirOut = new File(ruta);
         if(dirOut.exists() && dirOut.isFile()){
             dirOut.delete();
