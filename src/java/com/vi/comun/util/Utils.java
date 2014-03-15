@@ -16,6 +16,22 @@ public class Utils {
         ResourceBundle appProperties = ResourceBundle.getBundle("com.vi.comun.util.application");
         return appProperties.getString(propiedad);
     }
+    
+    public static int getNumAleatorio(){
+        return (int)(10000000*Math.random());
+    }
+    
+    public static String rellenarDerecha(String dato, String relleno, int tamano){
+        if(dato.length() > tamano){
+            return dato.substring(0, tamano);
+        }
+        
+        while(dato.length() < tamano){
+            dato+=relleno;
+        }
+        
+        return dato;
+    }
 
 
 }

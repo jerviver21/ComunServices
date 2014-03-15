@@ -1,5 +1,6 @@
 package com.vi.comun.services;
 
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -27,4 +28,5 @@ public interface CommonServicesLocal {
     public void updateEstructuraMenus();
     public void insertAudSesion(String usr, String opr);
     public Set<Date> getFestivos();
+
 }

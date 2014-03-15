@@ -123,9 +123,8 @@ public class CommonServices implements CommonServicesLocal {
                                     + "VALUES (1, 'RAIZ', null, 'es') ").executeUpdate();
                 menus.put("RAIZ", BigInteger.ONE);
             }
-            
+            System.out.println(keys);
             for(String key:keys){
-                System.out.print(key+";");
                 if(key.matches("menus.*")){
                     String[] datos = recursos1.getString(key).split(";");
                     if(em.createNativeQuery("SELECT * FROM menu WHERE nombre = '"+datos[0]+"' AND idioma = '"+datos[2]+"'").getResultList().isEmpty()){
@@ -134,6 +133,7 @@ public class CommonServices implements CommonServicesLocal {
                                 + "VALUES ('"+datos[0]+"', "+menus.get(datos[1])+", '"+datos[2]+"') ").executeUpdate();
                             BigInteger id = (BigInteger)em.createNativeQuery("SELECT id FROM menu WHERE nombre = '"+datos[0]+"' AND idioma = '"+datos[2]+"'").getSingleResult();
                             menus.put(datos[0], id);
+                            System.out.println("Se agrega menú: "+datos[0]);
                         }else{
                             Log.getLogger().log(Level.WARNING, "NO EXISTE el menu: {0}", datos[1]);
                         }
@@ -157,7 +157,7 @@ public class CommonServices implements CommonServicesLocal {
                             }else{
                                 String[] rolesAut = datos[4].split(",");
                                 for(String rol:rolesAut){
-                                    if(roles.get(rol) != null){
+                                    if(roles.get(rol.trim()) != null){
                                         em.createNativeQuery("INSERT INTO rol_resource (id_rol, id_resource) "
                                             + "VALUES ("+roles.get(rol)+", "+id+") ").executeUpdate();
                                     }else{
@@ -165,7 +165,7 @@ public class CommonServices implements CommonServicesLocal {
                                     }
                                 }
                             }
-                            
+                            System.out.println("Se agrega recurso: "+datos[0]);
                         }else{
                             Log.getLogger().log(Level.WARNING, "NO EXISTE el menu: {0}, para crear el recurso: "+datos[0], datos[1]);
                         }
@@ -176,6 +176,7 @@ public class CommonServices implements CommonServicesLocal {
             }
         } catch (Exception e) {
             Log.getLogger().log(Level.ALL, "Error al crear los menus por convención", e);
+            e.printStackTrace();
         }
     }
 

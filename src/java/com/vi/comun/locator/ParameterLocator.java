@@ -59,7 +59,7 @@ public class ParameterLocator {
             cache.put(PARAMETROS, parametros);
         }
         String valorParametro = parametros.get(parametro);
-        if(valorParametro != null && valorParametro.startsWith("OPENSHIFT")){
+        if(valorParametro != null && valorParametro.startsWith("VDEAWS")){
             String nombreVar = valorParametro.replaceAll("(.*)"+File.separator+".*", "$1");
             String valorVar = System.getenv(nombreVar);
             System.out.println("Variable de entorno: "+nombreVar+" - "+valorVar);

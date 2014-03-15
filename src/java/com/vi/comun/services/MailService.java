@@ -39,7 +39,7 @@ public class MailService {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean enviarMail(final AudMail datosMail) throws MessagingException{
-        System.out.println("Init Sending mail...");
+        System.out.println("Init Sending mail..."+locator.getParameter("smtp_user"));
         
         Properties props = new Properties();
         props.setProperty("mail.smtp.host", locator.getParameter("smtp_host"));

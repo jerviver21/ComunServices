@@ -408,7 +408,7 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
                     </fileset>
                 </union>
                 <taskdef classname="org.testng.TestNGAntTask" classpath="${run.test.classpath}" name="testng"/>
-                <testng classfilesetref="test.set" failureProperty="tests.failed" methods="${testng.methods.arg}" mode="${testng.mode}" outputdir="${build.test.results.dir}" suitename="ComunServices" testname="TestNG tests" workingDir="${basedir}">
+                <testng classfilesetref="test.set" failureProperty="tests.failed" listeners="org.testng.reporters.VerboseReporter" methods="${testng.methods.arg}" mode="${testng.mode}" outputdir="${build.test.results.dir}" suitename="ComunServices" testname="TestNG tests" workingDir="${basedir}">
                     <xmlfileset dir="${build.test.classes.dir}" includes="@{testincludes}"/>
                     <propertyset>
                         <propertyref prefix="test-sys-prop."/>
@@ -792,22 +792,11 @@ exists or setup the property manually. For example like this:
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target depends="compile,-library-inclusion-in-archive-weblogic,-library-inclusion-in-archive-by-user" name="library-inclusion-in-archive"/>
-    <target if="is.jars.in.ejbjar" name="-library-inclusion-in-archive-by-user">
-        <copyfiles files="${libs.hibernate-persistence.classpath}" todir="${build.classes.dir}"/>
-        <copyfiles files="${libs.hibernate-support.classpath}" todir="${build.classes.dir}"/>
-    </target>
+    <target if="is.jars.in.ejbjar" name="-library-inclusion-in-archive-by-user"/>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
-        <basename file="${libs.hibernate-persistence.classpath}" property="manifest.libs.hibernate-persistence.classpath"/>
-        <basename file="${libs.hibernate-support.classpath}" property="manifest.libs.hibernate-support.classpath"/>
-        <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 jar-2 "/>
-            <attribute name="jar-1-Extension-Name" value="${manifest.libs.hibernate-persistence.classpath}"/>
-            <attribute name="jar-2-Extension-Name" value="${manifest.libs.hibernate-support.classpath}"/>
-        </manifest>
+        <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
-        <copyfiles files="${libs.hibernate-persistence.classpath}" todir="${dist.ear.dir}/lib"/>
-        <copyfiles files="${libs.hibernate-support.classpath}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">
