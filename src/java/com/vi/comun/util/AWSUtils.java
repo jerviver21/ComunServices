@@ -17,7 +17,6 @@ public class AWSUtils {
     
     public static AmazonS3 getAmazonS3()throws IOException{
         PropertiesCredentials prop = new PropertiesCredentials(AWSUtils.class.getResourceAsStream("AwsCredentials.properties"));
-        System.out.println("--->* "+prop.getAWSAccessKeyId()+" *<------");
         AmazonS3 s3client = new AmazonS3Client(new PropertiesCredentials(AWSUtils.class.getResourceAsStream("AwsCredentials.properties")));
         return s3client;
     }
